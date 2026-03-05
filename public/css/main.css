@@ -1,30 +1,140 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+/* Import Professional Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* CSS Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+/* Base Styles */
+body{
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    line-height:1.6;
+    background:#f7f9fc;
+    color:#1a1a1a;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+/* Navigation */
+nav{
+    background:#0a2540;
+    padding:1rem 2rem;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    flex-wrap:wrap;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    font-size:1rem;
+    padding:0.4rem 0.6rem;
+    transition:0.3s;
+}
+
+nav a:hover,
+nav a:focus{
+    border-bottom:2px solid #4da3ff;
+}
+
+/* Main Content */
+main{
+    max-width:1100px;
+    margin:auto;
+    padding:2.5rem 1.5rem;
+    text-align:center;
+}
+
+h1{
+    font-size:2.4rem;
+    margin-bottom:1rem;
+    color:#0a2540;
+}
+
+h2{
+    font-size:1.6rem;
+    margin-bottom:1rem;
+    font-weight:500;
+}
+
+p{
+    max-width:700px;
+    margin:auto;
+    margin-bottom:2rem;
+    font-size:1rem;
+    color:#444;
+}
+
+/* Logo */
+.main-logo{
+    max-width:320px;
+    width:100%;
+    margin-top:1rem;
+}
+
+/* Footer */
+footer{
+    background:#0a2540;
+    color:white;
+    text-align:center;
+    padding:1rem;
+    margin-top:3rem;
+    font-size:0.9rem;
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+    h1{
+        font-size:2rem;
     }
-}             
+
+    h2{
+        font-size:1.4rem;
+    }
+
+    nav ul{
+        gap:1.2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+    nav{
+        padding:1rem;
+    }
+
+    nav ul{
+        flex-direction:column;
+        align-items:center;
+        gap:0.7rem;
+    }
+
+    main{
+        padding:2rem 1rem;
+    }
+
+    h1{
+        font-size:1.7rem;
+    }
+
+    h2{
+        font-size:1.2rem;
+    }
+
+    p{
+        font-size:0.95rem;
+    }
+
+    .main-logo{
+        max-width:240px;
+    }
+}
