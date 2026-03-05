@@ -1,0 +1,28 @@
+{
+  "name": "cse340-course-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miracle-Lawrence/cse340-course-repo.git"
+  },
+  "author": "Miracle Lawrence",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miracle-Lawrence/cse340-course-repo/issues"
+  },
+  "homepage": "https://github.com/Miracle-Lawrence/cse340-course-repo#readme",
+  "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
