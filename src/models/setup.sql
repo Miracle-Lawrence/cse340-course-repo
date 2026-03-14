@@ -66,3 +66,38 @@ VALUES
 
 (3, 'Clothing Drive & Sort', 'Collecting and organizing seasonal attire for local families in need.', 'UnityServe Warehouse', '2026-06-20');
  
+
+
+-- ========================================
+-- Categories Table
+-- ========================================
+
+ CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+
+-- ========================================
+-- Project_Categories Table
+-- ========================================
+CREATE TABLE project_categories (
+    project_id INT,
+    category_id INT,
+    PRIMARY KEY (project_id, category_id),
+    FOREIGN KEY (project_id) REFERENCES serviceprojects(project_id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
+);
+
+INSERT INTO categories (name)
+VALUES
+('Community Service'),
+('Education'),
+('Environmental');
+
+INSERT INTO project_categories (project_id, category_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(3, 1);
