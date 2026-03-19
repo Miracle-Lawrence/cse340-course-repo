@@ -3,6 +3,7 @@ import path from "path";
 import express from "express";
 import { testConnection } from "./src/models/db.js";
 import router from "./src/controllers/routes.js";
+
 // Define the the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || "production";
 

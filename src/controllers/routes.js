@@ -17,4 +17,3 @@ router.get("/categories", showCategoriesPage);
 router.get("/test-error", testErrorPage);
 
 export default router;
-2
