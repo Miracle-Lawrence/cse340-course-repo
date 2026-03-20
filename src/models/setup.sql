@@ -54,7 +54,7 @@ VALUES
 
 (2, 'Seed Distribution Drive', 'Packaging and giving away heirloom vegetable seeds to local families.', 'Market Square', '2026-03-25'),
 
-(2, 'Irrigation System Repair', 'Restoring the greywater recycling system for the community allotment.', 'Central Gardens', '026-07-08'),
+(2, 'Irrigation System Repair', 'Restoring the greywater recycling system for the community allotment.', 'Central Gardens', '2026-07-08'),
 
 (3, 'Homeless Shelter Meal Service', 'Preparing and serving nutritional three-course meals for 200 guests.', 'Unity Hall', '2026-04-01'),
 

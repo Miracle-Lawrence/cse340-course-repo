@@ -1,13 +1,12 @@
-<%- include ('partials/header') %>
-<main>
+<%- include('partials/header') %>
 
-<h1><%= project.title %></h1>
+<main>
+  <h1><%= project.title %></h1>
 
   <p><strong>Description:</strong></p>
   <p><%= project.description %></p>
 
   <p><strong>Date:</strong> <%= project.date %></p>
-
   <p><strong>Location:</strong> <%= project.location %></p>
 
   <p>
@@ -17,8 +16,17 @@
     </a>
   </p>
 
-  <br>
+  <!-- Categories as clickable tags -->
+  <% if (categories.length > 0) { %>
+    <p><strong>Categories:</strong>
+      <% categories.forEach(category => { %>
+        <a href="/category/<%= category.category_id %>" class="category-tag"><%= category.name %></a>
+      <% }) %>
+    </p>
+  <% } %>
 
+  <br>
   <a href="/projects">← Back to Projects</a>
 </main>
+
 <%- include('partials/footer') %>
