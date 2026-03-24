@@ -4,10 +4,14 @@
   <h1><%= title %></h1>
 
   <ul>
-    <li><a href="/category/1"><%= categories[0].name %></a></li>
-    <li><a href="/category/2"><%= categories[1].name %></a></li>
-    <li><a href="/category/3"><%= categories[2].name %></a></li>
-  </ul>
+  <% categories.forEach((category, category_id) => { %>
+    <li>
+      <a href="/category/<%= category_id + 1 %>">
+        <%= category.name %>
+      </a>
+    </li>
+  <% }) %>
+</ul>
 </main>
 
 <%- include('partials/footer') %>
