@@ -1,9 +1,31 @@
 import express from "express";
 
 import { showHomePage } from "./index.js";
-import { showOrganizationsPage, showOrganizationDetailsPage } from "./organizations.js";
-import { showProjectsPage, showProjectDetailsPage } from "./projects.js";
-import { showCategoriesPage, getCategoryDetails } from "./categories.js";
+
+import {
+  showOrganizationsPage,
+  showOrganizationDetailsPage,
+  showNewOrganizationForm,
+    organizationValidation,
+  processNewOrganizationForm,
+  showEditOrganizationForm,
+    processEditOrganizationForm
+} from "./organizations.js";
+
+import {
+  showProjectsPage,
+  showProjectDetailsPage,
+  showNewProjectForm,
+  processNewProjectForm,
+  projectValidation
+} from "./projects.js";
+
+import {
+  showCategoriesPage,
+  getCategoryDetails,
+  showAssignCategoriesForm,
+  processAssignCategoriesForm
+} from "./categories.js";
 import { testErrorPage } from "./errors.js";
 
 const router = express.Router();
@@ -18,7 +40,29 @@ router.get('/project/:id', showProjectDetailsPage);
 // Category details
 router.get('/category/:id', getCategoryDetails);
 // Redirect bare /category or /category/ to the main categories page
+// Route for new organization page
+router.get('/new-organization', showNewOrganizationForm);
 
+// Route to handle new organization form submission
+router.post(
+  "/new-organization",
+  organizationValidation, processNewOrganizationForm,
+);
+// Route to display the edit organization form
+router.get('/edit-organization/:id', showEditOrganizationForm);
+
+// Route to handle the edit organization form submission
+router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
+
+// Route for new project page
+router.get('/new-project', showNewProjectForm);
+
+// Route to handle new project form submission
+router.post('/new-project', projectValidation, processNewProjectForm);
+
+// Routes to handle the assign categories to project form
+router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 
 // error-handling routes
 router.get("/test-error", testErrorPage);
