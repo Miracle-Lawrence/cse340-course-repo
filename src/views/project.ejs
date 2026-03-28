@@ -9,12 +9,17 @@
   <p><strong>Date:</strong> <%= project.date %></p>
   <p><strong>Location:</strong> <%= project.location %></p>
 
+  
   <p>
     <strong>Organization:</strong>
     <a href="/organization/<%= project.organization_id %>">
       <%= project.organization_name %>
     </a>
   </p>
+
+  <a href="/edit-project/<%= project.project_id %>" class="edit-btn">
+  ✏️ Edit Project
+  </a>
 
   <!-- Categories as clickable tags -->
   <% if (categories.length > 0) { %>
