@@ -23,8 +23,13 @@
     <p>No projects are assigned to this category yet.</p>
   <% } %>
 
+
   <br>
   <a href="/categories">← Back to Categories</a>
+  <br>
+  <a href="/edit-category/<%= category.category_id %>" class="edit-btn">
+  ✏️ Edit Category
+</a>
 </main>
 
 <%- include('partials/footer') %>

@@ -1,4 +1,5 @@
 import db from "./db.js";
+import pool from "./db.js";
 
 const getAllCategories = async () => {
   const query = `
@@ -68,9 +69,36 @@ const updateCategoryAssignments = async (projectId, categoryIds) => {
   }
 };
 
+// ✅ Create Category
+const createCategory = async (name) => {
+  const sql = `
+    INSERT INTO categories (name)
+    VALUES ($1)
+    RETURNING category_id;
+  `;
+
+  const result = await pool.query(sql, [name]);
+  return result.rows[0].category_id;
+};
+
+
+// ✅ Update Category
+const updateCategory = async (id, name) => {
+  const sql = `
+    UPDATE categories
+    SET name = $2
+    WHERE category_id = $1;
+  `;
+
+  await pool.query(sql, [id, name]);
+};
+
+
 export {
   getAllCategories,
   getCategoryById,
   getCategoriesByProjectId,
   updateCategoryAssignments,
+  createCategory,
+  updateCategory,
 };

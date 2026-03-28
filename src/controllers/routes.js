@@ -26,8 +26,14 @@ import {
   showCategoriesPage,
   getCategoryDetails,
   showAssignCategoriesForm,
-  processAssignCategoriesForm
+  processAssignCategoriesForm,
+  showNewCategoryForm,
+  processNewCategoryForm,
+  showEditCategoryForm,
+  processEditCategoryForm,
+  categoryValidation
 } from "./categories.js";
+
 import { testErrorPage } from "./errors.js";
 
 const router = express.Router();
@@ -76,6 +82,15 @@ router.post(
   projectValidation, 
   processEditProjectForm
 );
+
+// CREATE
+router.get("/new-category", showNewCategoryForm);
+router.post("/new-category", categoryValidation, processNewCategoryForm);
+
+// EDIT
+router.get("/edit-category/:id", showEditCategoryForm);
+router.post("/edit-category/:id", categoryValidation, processEditCategoryForm);
+
 
 // error-handling routes
 router.get("/test-error", testErrorPage);
