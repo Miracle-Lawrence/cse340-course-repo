@@ -61,17 +61,32 @@ const showAssignCategoriesForm = async (req, res) => {
 
 const processAssignCategoriesForm = async (req, res) => {
   const projectId = req.params.projectId;
-  const selectedCategoryIds = req.body.categoryIds || [];
 
-  // Ensure selectedCategoryIds is an array
-  const categoryIdsArray = Array.isArray(selectedCategoryIds)
-    ? selectedCategoryIds
-    : [selectedCategoryIds];
-  await updateCategoryAssignments(projectId, categoryIdsArray);
-  req.flash("success", "Categories updated successfully.");
-  res.redirect(`/project/${projectId}`);
+  // Step 1: Get selected categories
+  let selectedCategoryIds = req.body.categoryIds || [];
+
+  // Step 2: Normalize: always an array
+  if (!Array.isArray(selectedCategoryIds)) {
+    selectedCategoryIds = [selectedCategoryIds];
+  }
+
+  // Step 3: Filter out any empty strings or invalid values
+  selectedCategoryIds = selectedCategoryIds
+    .map((id) => parseInt(id))
+    .filter((id) => !isNaN(id));
+
+  try {
+    // Step 4: Update assignments safely
+    await updateCategoryAssignments(projectId, selectedCategoryIds);
+
+    req.flash("success", "Categories updated successfully.");
+    res.redirect(`/project/${projectId}`);
+  } catch (err) {
+    console.error("Error updating categories:", err);
+    req.flash("error", "Failed to update categories.");
+    res.redirect(`/assign-categories/${projectId}`);
+  }
 };
-
 // ===============================
 // SHOW NEW CATEGORY FORM
 // ===============================

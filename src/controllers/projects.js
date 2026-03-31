@@ -36,6 +36,7 @@ const projectValidation = [
     .withMessage("Date is required")
     .isISO8601()
     .withMessage("Date must be a valid date format"),
+
   body("organization_id")
     .notEmpty()
     .withMessage("Organization is required")
@@ -90,20 +91,8 @@ const showNewProjectForm = async (req, res) => {
 };
 
 const processNewProjectForm = async (req, res) => {
-  // Check for validation errors
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    // Loop through validation errors and flash them
-    errors.array().forEach((error) => {
-      req.flash("error", error.msg);
-    });
-
-    // Redirect back to the new project form
-    return res.redirect("/new-project");
-  }
-
   // Extract form data from req.body
-  const { title, description, location, date, organizationId } = req.body;
+  const { title, description, location, date, organization_id } = req.body;
 
   try {
     // Create the new project in the database
@@ -112,7 +101,7 @@ const processNewProjectForm = async (req, res) => {
       description,
       location,
       date,
-      organizationId,
+      organization_id,
     );
 
     req.flash("success", "New service project created successfully!");
@@ -142,9 +131,10 @@ const showEditProjectForm = async (req, res) => {
   });
 };
 
+
+
 const processEditProjectForm = async (req, res) => {
   const projectId = req.params.id;
-
   const { organization_id, title, description, location, date } = req.body;
 
   // 🔴 Validation check
@@ -154,10 +144,10 @@ const processEditProjectForm = async (req, res) => {
       req.flash("error", error.msg);
     });
 
-    return res.redirect("/edit-project/" + projectId);
+    return res.redirect("/edit-project/" + req.params.id);
   }
 
-  // 🟢 Update project
+  // Update project
   await updateProject(
     projectId,
     organization_id,
