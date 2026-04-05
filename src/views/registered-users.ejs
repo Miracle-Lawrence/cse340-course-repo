@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<main>
+    <h1><%= title %></h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% registered_users.forEach(user => { %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+
+</main>
+<%- include('partials/footer') %>
