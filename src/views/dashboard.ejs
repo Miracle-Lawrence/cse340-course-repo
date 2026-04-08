@@ -10,6 +10,20 @@
     <a href="/registered-users">View Registered Users and Roles</a>
 <% } %>
   
+
+<h2>My Volunteer Projects</h2>
+
+<ul>
+  <% projects.forEach(project => { %>
+    <li>
+      <strong><%= project.title %></strong> - <%= project.location %>
+
+      <form method="POST" action="/projects/<%= project.project_id %>/unvolunteer">
+        <button type="submit">Remove</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
     
 </main>
 

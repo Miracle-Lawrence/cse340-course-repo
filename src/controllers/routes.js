@@ -46,6 +46,11 @@ import {
   showRegisteredUsersPage
 } from "./users.js";
 
+import {
+  addVolunteerController,
+  removeVolunteerController,
+} from "../controllers/volunteer.js";
+
 import { testErrorPage } from "./errors.js";
 
 const router = express.Router();
@@ -147,6 +152,18 @@ router.get('/dashboard', requireLogin, showDashboard);
 
 //Reistered-Users Page 
 router.get('/registered-users', requireRole("admin"), showRegisteredUsersPage)
+
+router.post(
+  "/projects/:id/volunteer",
+  requireLogin,
+  addVolunteerController,
+);
+
+router.post(
+  "/projects/:id/unvolunteer",
+  requireLogin,
+  removeVolunteerController,
+);
 
 // error-handling routes
 router.get("/test-error", testErrorPage);

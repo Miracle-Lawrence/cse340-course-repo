@@ -40,6 +40,25 @@
       <a href="/assign-categories/<%= project.project_id %>">Edit Categories</a>
 <% } %>
 
+<% if (user) { %>
+
+  <% if (isVolunteer) { %>
+    <p>You are volunteering for this project</p>
+
+    <form method="POST" action="/projects/<%= project.project_id %>/unvolunteer">
+      <button type="submit">Remove Me</button>
+    </form>
+
+  <% } else { %>
+    <form method="POST" action="/projects/<%= project.project_id %>/volunteer">
+      <button type="submit">Volunteer</button>
+    </form>
+    
+  <% } %>
+
+<% } %>
+
+    
 </main>
 
 <%- include('partials/footer') %>

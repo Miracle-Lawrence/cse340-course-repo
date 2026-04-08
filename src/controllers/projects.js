@@ -8,6 +8,8 @@ import {
 import {
   getAllOrganizations } from "../models/organizations.js"; 
 
+import { isUserVolunteer } from "../models/volunteer.js";
+
 import { getCategoriesByProjectId } from "../models/categories.js";
 import { body, validationResult } from "express-validator";
 
@@ -66,20 +68,24 @@ const showProjectsPage = async (req, res) => {
 // Show Single Project Details Page
 // ===============================
 const showProjectDetailsPage = async (req, res) => {
-  // Extract ID from URL
   const projectId = req.params.id;
 
-  // Get project from database
   const project = await getProjectDetails(projectId);
-
-  // Get categories for this project
   const categories = await getCategoriesByProjectId(projectId);
 
-  // Render project details page
-  res.render("project", { 
-    title: project.title, 
+  let isVolunteer = false;
+
+  // ✅ Check if user is logged in
+  if (req.session.user) {
+    isVolunteer = await isUserVolunteer(req.session.user.user_id, projectId);
+  }
+
+  res.render("project", {
+    title: project.title,
     project,
-    categories
+    categories,
+    user: req.session.user, // ✅ IMPORTANT
+    isVolunteer, // ✅ IMPORTANT
   });
 };
 
